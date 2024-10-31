@@ -1,19 +1,19 @@
 import { useEffect, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-
 // import { ToyFilter } from '../cmps/ToyFilter.jsx'
 
 import { toyService } from '../services/toy.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { loadToys, removeToyOptimistic,saveToy, setFilterBy, setSortBy } from '../store/actions/toy.actions.js'
+import { loadToys, removeToyOptimistic, saveToy, setFilterBy, setSortBy } from '../store/actions/toy.actions.js'
 import { ToyList } from '../cmps/ToyList.jsx'
 import { ToySort } from '../cmps/SortBy.jsx'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
+import { PaginationButtons } from '../cmps/Pagination.jsx'
 // import { ToyEdit } from './ToyEdit.jsx'
 // import { storageService } from '../services/async-storage.service.js'
 
-export function ToyIndex() {
+export function ToyIndex({ pageIdx, setPageIdx, toysLength }) {
     // const dispatch = useDispatch()
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
@@ -41,16 +41,17 @@ export function ToyIndex() {
     }, [])
 
     function onSetFilter(filterBy) {
-        setFilterBy(filterBy)
+        setFilterBy({ ...filterBy, pageIdx: 0 })
     }
 
     function onSetSortBy(sortBy) {
         setSortBy(sortBy)
     }
 
+  
     function onRemoveToy(toyId) {
         console.log('hihihihi');
-        
+
         removeToyOptimistic(toyId)
             .then(() => {
                 loadToys()
@@ -59,9 +60,9 @@ export function ToyIndex() {
             })
             .catch(err => {
                 console.log('err:', err)
-                showErrorMsg('Cannot remove toy'+toyId)
+                showErrorMsg('Cannot remove toy' + toyId)
             })
-        
+
     }
 
     // function onAddToy() {
@@ -88,17 +89,32 @@ export function ToyIndex() {
             })
     }
 
+    function setPageIdx(pageIdx) {
+        setFilterBy({ pageIdx })
+      }
+
     if (!toys) return <div>loading...</div>
-console.log(toys.length);
+    console.log(toys.length);
 
     return (
         <div>
             <h3>toys App</h3>
             <main>
                 <Link to="/toy/edit">Add toy</Link>
+                <PaginationButtons
+                    pageIdx={filterBy.pageIdx}
+                    setPageIdx={setPageIdx}
+                    toysLength={toys.length}
+                />
+
                 {/* <button className='add-btn' onClick={onAddToy}>Add Random toy ⛐</button> */}
                 {/* <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} /> */}
-
+                {/* <div className="pagination">
+                    <button onClick={() => onChangePage(-1)} className="pagination-button">-</button>
+                    <span className="pagination-info">{filterBy.pageIdx + 1 || 'No Pagination'}</span>
+                    <button onClick={() => onChangePage(1)} className="pagination-button">+</button>
+                    <button onClick={onTogglePagination} className="toggle-pagination-button">Toggle Pagination</button>
+                </div> */}
                 {/* <toyFilter filterBy={filterBy} onSetFilter={onSetFilter} /> */}
                 <ToySort onSetSortBy={onSetSortBy} />
                 <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
@@ -111,7 +127,7 @@ console.log(toys.length);
                         toys={toys}
                         onRemoveToy={onRemoveToy}
                         onEditToy={onEditToy}
-                        // onAddToy={onAddToy}
+                    // onAddToy={onAddToy}
                     />
                     : <div>Loading...</div>
                 }

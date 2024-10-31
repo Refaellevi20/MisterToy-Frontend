@@ -36,7 +36,9 @@ export const toyService = {
 
 
 function query(filterBy = {}, sortBy = {}) {
-    const filterAndSort = { ...filterBy, sortBy: sortBy.field, sortDir: sortBy.dir === 1 ? 'asc' : 'desc' }
+   
+    const filterAndSort = { ...filterBy, sortBy: sortBy.field,pageIdx: filterBy.pageIdx || 0, sortDir: sortBy.dir === 1 ? 'asc' : 'desc' }
+   
     return httpService.get(BASE_URL, filterAndSort)
 }
 
@@ -87,7 +89,7 @@ function save(toy) {
 
 
 function getDefaultFilter() {
-    return { name: '', price: '' }
+    return { name: '', price: '', pageIdx: 0 }
 }
 
 function getDefaultSort() {

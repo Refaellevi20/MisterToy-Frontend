@@ -17,7 +17,11 @@ export function ToyList({ toys, onRemoveToy, onEditToy}) {
     return (
         <ul className="toy-list">
             {toys.map(toy =>
-                <li className="toy-preview" key={toy._id} style={{ backgroundColor: getRandomColor(), opacity: 0.9 }}>
+                <li className="toy-preview" key={toy._id}style={{ 
+                    backgroundColor: getRandomColor(),  
+                    border: `8px solid ${getRandomColor()}`, 
+                    opacity: 0.9 
+                }}>
                     <ToyPreview toy={toy} />
 
                     <div>
