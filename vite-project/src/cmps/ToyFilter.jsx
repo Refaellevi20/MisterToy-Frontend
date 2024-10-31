@@ -19,28 +19,28 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
     return (
         <section className="toy-filter">
-            <h2>Filter Toys</h2>
-            <form>
-                <label htmlFor="name">By Name:</label>
-                <input
-                    value={filterByToEdit.name}
-                    onChange={handleChange}
-                    type="search"
-                    placeholder="Enter name"
-                    name="name"
-                    id="name"
-                />
-                <label htmlFor="price">By Price:</label>
-                <input
-                    id="price"
-                    label="By price"
-                    variant="outlined"
-                    name="price"
-                    size='small'
-                    value={filterByToEdit.price}
-                    onChange={handleChange}
-                />
-            </form>
-        </section>
+        <h2>Filter Toys</h2>
+        <form>
+            <label htmlFor="name">By Name:</label>
+            <input
+                value={filterByToEdit.name}
+                onChange={handleChange}
+                type="search"
+                placeholder="Enter name"
+                name="name"
+                id="name"
+            />
+            
+            <label htmlFor="price">By Price:</label>
+            <input
+                id="price"
+                type="number"  
+                name="price"
+                value={filterByToEdit.price}
+                onChange={handleChange}
+                placeholder="Enter maximum price"
+            />
+        </form>
+    </section>
     )
 }

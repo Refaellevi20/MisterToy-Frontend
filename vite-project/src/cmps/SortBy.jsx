@@ -1,4 +1,6 @@
+import React from 'react'
 import { useEffect, useState } from 'react'
+import { Select, MenuItem, Button, FormControl, InputLabel } from '@mui/material'
 // import Button from '@mui/material/Button';
 
 export function ToySort({ onSetSortBy }) {
@@ -31,22 +33,30 @@ export function ToySort({ onSetSortBy }) {
 
     return (
         <section className="sort-container">
-            <h2>Sort</h2>
-            <label htmlFor="sort-select">Sort by:</label>
-            <select
+        <h2>Sort</h2>
+        <FormControl variant="outlined" className="sort-select">
+            <InputLabel id="sort-select-label">Sort by</InputLabel>
+            <Select
+                labelId="sort-select-label"
                 id="sort-select"
                 value={sortByToEdit.field}
                 onChange={handleSortChange}
-                className="sort-select"
+                label="Sort by"
             >
-                <option value="name">Name</option>
-                <option value="price">Price</option>
-                <option value="createdAt">Created</option>
-                <option value="inStock">In Stock</option>
-            </select>
-            <button onClick={toggleSortDirection} color='inherit' variant="text">Sort Direction
-                ({sortByToEdit.dir === 1 ? 'Asc' : 'Desc'})</button>
-
-        </section>
+                <MenuItem value="name">Name</MenuItem>
+                <MenuItem value="price">Price</MenuItem>
+                <MenuItem value="createdAt">Created</MenuItem>
+                <MenuItem value="inStock">In Stock</MenuItem>
+            </Select>
+        </FormControl>
+        <Button
+            onClick={toggleSortDirection}
+            variant="outlined"
+            color="inherit"
+            style={{ marginLeft: '10px' }}
+        >
+            Sort Direction ({sortByToEdit.dir === 1 ? 'Asc' : 'Desc'})
+        </Button>
+    </section>
     )
 }

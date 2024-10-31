@@ -1,6 +1,9 @@
 
 import { utilService } from './util.service.js'
 import { httpService } from './http.service.js'
+import { storageService } from './async-storage.service.js'
+
+// _createToys()
 
 const BASE_URL = 'toy/'
 const labels = [
@@ -14,6 +17,7 @@ const labels = [
     'Battery Powered',
 ]
 
+// todo.color = getRandomColor()
 
 export const toyService = {
     query,
@@ -26,6 +30,8 @@ export const toyService = {
     getFilterFromSearchParams,
     getSortFromSearchParams,
     getToyLabels,
+    getImportanceStats,
+    toggleMenu
 }
 
 
@@ -38,6 +44,14 @@ function query(filterBy = {}, sortBy = {}) {
 //     return httpService.get(BASE_URL, filterBy)
 //   }
   
+function getRandomColor (){
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
 function getById(toyId) {
     return httpService.get(BASE_URL + toyId)
@@ -81,6 +95,7 @@ function getDefaultSort() {
 }
 
 
+
 function getFilterFromSearchParams(searchParams) {
     const defaultFilter = getDefaultFilter()
     const filterBy = {}
@@ -122,6 +137,56 @@ function _getRandomLabels() {
     }
     return randomLabels
 }
+
+async function getImportanceStats() {
+    try {
+        const toys = await httpService.get(BASE_URL)
+        const toyStatsByLabel = _getToyStatsByLabel(toys)
+        const data = labels.map(label => ({
+            label,
+            toyAmount: toyStatsByLabel[label]?.toyAmount || 0,
+            avgPrice: toyStatsByLabel[label]?.avgPrice || 0
+        }))
+        return data
+    } catch (err) {
+        console.error('Cannot get importance stats:', err)
+        throw err
+    }
+}
+
+
+function _getToyStatsByLabel(toys) {
+    const toyStatsByLabel = {}
+
+    labels.forEach(label => {
+        toyStatsByLabel[label] = { toyAmount: 0, totalPrice: 0, avgPrice: 0 }
+    })
+
+    toys.forEach(toy => {
+        toy.labels.forEach(label => {
+            toyStatsByLabel[label].toyAmount++
+            toyStatsByLabel[label].totalPrice += parseFloat(toy.price)
+        })
+    })
+
+    Object.keys(toyStatsByLabel).forEach(label => {
+        if (toyStatsByLabel[label].toyAmount > 0) {
+            toyStatsByLabel[label].avgPrice = (toyStatsByLabel[label].totalPrice / toyStatsByLabel[label].toyAmount).toFixed(2)
+            // Convert back to number
+            toyStatsByLabel[label].avgPrice = parseFloat(toyStatsByLabel[label].avgPrice)
+        } else {
+            toyStatsByLabel[label].avgPrice = 0
+        }
+    })
+
+    return toyStatsByLabel
+}
+
+function toggleMenu() {
+    document.body.classList.toggle("menu-open")
+
+}
+
 
 // import { utilService } from './util.service.js'
 // // import { httpService } from './http.service.js'
@@ -233,7 +298,7 @@ function _getRandomLabels() {
 // }
 
 // function _createToys() {
-//     let toys = utilService.loadFromStorage(TOY_KEY)
+//     let toys = utilService.loadFromStorage(storageService)
 //     if (!toys || !toys.length) {
 //         toys = []
 //         toys.push(_createToy('Bear'))
@@ -244,7 +309,8 @@ function _getRandomLabels() {
 //         toys.push(_createToy('Doll'))
 //         toys.push(_createToy('Play'))
 //         toys.push(_createToy('Action'))
-//         utilService.saveToStorage(TOY_KEY, toys)
+//         utilService.saveToStorage(storageService, toys)
+//         getRandomColor()
 //     }
 //     // console.log(JSON.stringify(toys))
    

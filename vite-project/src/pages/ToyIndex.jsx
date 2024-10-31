@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+
 // import { ToyFilter } from '../cmps/ToyFilter.jsx'
 
 import { toyService } from '../services/toy.service.js'
