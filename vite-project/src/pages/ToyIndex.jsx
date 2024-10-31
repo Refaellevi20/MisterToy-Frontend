@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { toyService } from '../services/toy.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { loadToys, removeToy,saveToy, setFilterBy, setSortBy } from '../store/actions/toy.actions.js'
+import { loadToys, removeToyOptimistic,saveToy, setFilterBy, setSortBy } from '../store/actions/toy.actions.js'
 import { ToyList } from '../cmps/ToyList.jsx'
 import { ToySort } from '../cmps/SortBy.jsx'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
@@ -13,7 +13,7 @@ import { ToyFilter } from '../cmps/ToyFilter.jsx'
 // import { storageService } from '../services/async-storage.service.js'
 
 export function ToyIndex() {
-
+    // const dispatch = useDispatch()
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
@@ -23,8 +23,6 @@ export function ToyIndex() {
 
     const defaultFilter = toyService.getFilterFromSearchParams(searchParams)
     const defaultSort = toyService.getSortFromSearchParams(searchParams)
-
-    // const dispatch = useDispatch()
 
     useEffect(() => {
         loadToys(filterBy, sortBy)
@@ -50,16 +48,19 @@ export function ToyIndex() {
     }
 
     function onRemoveToy(toyId) {
-        if (confirm('Sure you want to delete?')) {
-            removeToy(toyId)
+        console.log('hihihihi');
+        
+        removeToyOptimistic(toyId)
             .then(() => {
+                loadToys()
+                console.log('hahahahhahahah')
                 showSuccessMsg('toy removed')
             })
             .catch(err => {
                 console.log('err:', err)
                 showErrorMsg('Cannot remove toy'+toyId)
             })
-        }
+        
     }
 
     // function onAddToy() {
@@ -73,20 +74,21 @@ export function ToyIndex() {
     //         })
     // }
 
-    // function onEditToy(toy) {
-    //     const price = +prompt('New price?')
-    //     const toyToSave = { ...toy, price }
+    function onEditToy(toy) {
+        const price = +prompt('New price?')
+        const toyToSave = { ...toy, price }
 
-    //     saveToy(toyToSave)
-    //         .then((savedToy) => {
-    //             showSuccessMsg(`toy updated to price: $${savedToy.price}`)
-    //         })
-    //         .catch(err => {
-    //             showErrorMsg('Cannot update toy')
-    //         })
-    // }
+        saveToy(toyToSave)
+            .then((savedToy) => {
+                showSuccessMsg(`toy updated to price: $${savedToy.price}`)
+            })
+            .catch(err => {
+                showErrorMsg('Cannot update toy')
+            })
+    }
 
     if (!toys) return <div>loading...</div>
+console.log(toys.length);
 
     return (
         <div>
@@ -107,7 +109,7 @@ export function ToyIndex() {
                         // txt='abababa'
                         toys={toys}
                         onRemoveToy={onRemoveToy}
-                        // onEditToy={onEditToy}
+                        onEditToy={onEditToy}
                         // onAddToy={onAddToy}
                     />
                     : <div>Loading...</div>

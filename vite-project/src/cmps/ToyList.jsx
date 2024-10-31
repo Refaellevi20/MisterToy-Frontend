@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export function ToyList({ toys, onRemoveToy, onEditToy}) {
     // console.log('toys:', toys)
-    if (!toys) return <div>Loading</div>
+    if (!toys || toys.length === 0) return <div>No toys available.</div>
     return (
         <ul className="toy-list">
             {toys.map(toy =>
@@ -12,6 +12,7 @@ export function ToyList({ toys, onRemoveToy, onEditToy}) {
 
                     <div>
                         <button onClick={() => onRemoveToy(toy._id)}>x</button>
+                        {/* <button onClick={() => onEditToy(toy)}>Edit</button> */}
                         <button className='btn-details'><Link to={`/toy/${toy._id}`}>Details</Link>
                         </button>
                         <button onClick={() => onEditToy(toy)}>Edit</button>

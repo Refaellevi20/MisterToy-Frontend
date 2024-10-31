@@ -10,7 +10,12 @@
       "cost": 42393
     },
     {
-      "label": "Mar",
+        "labels": [
+      "Doll",
+      "Battery Powered",
+      "Baby",
+      "Outdoor"
+    ],
       "revenue": 117238,
       "cost": 50262
     },

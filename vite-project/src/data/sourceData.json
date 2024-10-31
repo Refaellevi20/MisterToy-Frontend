@@ -1,15 +1,26 @@
 [
-    {
-      "label": "Ads",
-      "value": 32
-    },
-    {
-      "label": "Subscriptions",
-      "value": 45
-    },
-    {
-      "label": "Sponsorships",
-      "value": 23
-    }
-  ]
-  
+  {
+    "label": "Doll",
+    "value": 10
+  },
+  {
+    "label": "Battery Powered",
+    "value": 15
+  },
+  {
+    "label": "Baby",
+    "value": 20
+  },
+  {
+    "label": "Outdoor",
+    "value": 5
+  },
+  {
+    "label": "Toy Cars",
+    "value": 12
+  },
+  {
+    "label": "Action Figures",
+    "value": 8
+  }
+]

@@ -20,42 +20,44 @@ export function loadToys(filterBy,sortBy) {
         })
 }
 
-export function removeToy(toyId) {
-    return toyService.remove(toyId)
-        .then(() => {
-            store.dispatch({ type: REMOVE_TOY, toyId })
-        })
-        .catch(err => {
-            console.log('toy action => Cannot remove toy', err)
-            throw err
-        })
-}
-
-// export function removeToyOptimistic(toyId) {
-//     store.dispatch({ type: REMOVE_TOY, toyId })
+// export function removeToy(toyId) {
 //     return toyService.remove(toyId)
-//         .then(() => {
-//             showSuccessMsg('Removed toy!')
+//         .then(() => {  
+//             console.log('this is');
+                      
+//             store.dispatch({ type: REMOVE_TOY, toyId })
 //         })
 //         .catch(err => {
-//             store.dispatch({ type: TOY_UNDO })
 //             console.log('toy action => Cannot remove toy', err)
 //             throw err
 //         })
 // }
 
-export function saveToy(toy) {
-    const type = toy._id ? UPDATE_TOY : ADD_TOY
-    return toyService.save(toy)
-        .then(savedToy => {
-            console.log('savedToy:', savedToy)
-            store.dispatch({ type, toy: savedToy })
-            return savedToy
+export function removeToyOptimistic(toyId) {
+    store.dispatch({ type: REMOVE_TOY, toyId })
+    return toyService.remove(toyId)
+        .then(() => {
+            showSuccessMsg('Removed toy!')
         })
         .catch(err => {
-            console.log('toy action => Cannot save toy', err)
+            store.dispatch({ type: TOY_UNDO })
+            console.log('toy action => Cannot remove toy', err)
             throw err
         })
+}
+
+export function saveToy(toy) {
+    const type = toy._id ? UPDATE_TOY : ADD_TOY;
+    return toyService.save(toy) 
+        .then(savedToy => {
+            console.log('savedToy:', savedToy);
+            store.dispatch({ type, toy: savedToy });
+            return savedToy;
+        })
+        .catch(err => {
+            console.log('toy action => Cannot save toy', err);
+            throw err;
+        });
 }
 
 export function setFilterBy(filterBy) {

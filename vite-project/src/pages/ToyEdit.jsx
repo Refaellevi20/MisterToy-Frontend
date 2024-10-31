@@ -54,6 +54,7 @@ export function ToyEdit() {
       .catch(err => {
         showErrorMsg('Cannot save toy')
       })
+    //   .finally (() =>   navigate('/toy'))
   }
 
   const { name, price, labels: toyLabels } = toyToEdit
@@ -100,10 +101,8 @@ export function ToyEdit() {
             </div>
           ))}
         </div>
-
         <button>{toyToEdit._id ? 'Save' : 'Add'}</button>
         <Link to="/toy">Cancel</Link>
-
       </form>
     </section>
   )

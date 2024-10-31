@@ -10,7 +10,7 @@ export function ToyPreview({ toy }) {
             <p>Price: <span>${toy.price}</span></p>
             <p>Name: <span>{toy.name}</span></p>
             {toy.inStock ? (
-                <img className="stock-img" src="src/assets/img/1.png" alt="In Stock" />
+                <img className="stock-img" src="./assets/img/1.png" alt="In Stock" />
             ) : (
                 <img className="stock-img" src="src/assets/img/2.png" alt="Out of Stock" />
             )}

@@ -34,6 +34,11 @@ function query(filterBy = {}, sortBy = {}) {
     return httpService.get(BASE_URL, filterAndSort)
 }
 
+// function query(filterBy = {}) {
+//     return httpService.get(BASE_URL, filterBy)
+//   }
+  
+
 function getById(toyId) {
     return httpService.get(BASE_URL + toyId)
 }
@@ -60,9 +65,10 @@ function getEmptyToy() {
     }
 }
 
-function save (toy) {
-    const method = toy._i ? 'put' : 'post'
-    return httpService[method](BASE_URL,toy)
+function save(toy) {
+    const method = toy._id ? 'put' : 'post';
+    const endpoint = toy._id ? `toy/${toy._id}` : 'toy'
+    return httpService[method](endpoint, toy)
 }
 
 
