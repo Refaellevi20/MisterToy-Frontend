@@ -9,6 +9,7 @@ import { Provider } from 'react-redux'
 
 import { AppHeader } from './cmps/AppHeader.jsx'
 // import { AppFooter } from './cmps/AppFooter.jsx'
+// import { Dashboard } from './pages/Dashboard.jsx' 
 
 import { HomePage } from './pages/HomePage.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
@@ -16,13 +17,13 @@ import { ToyIndex } from './pages/ToyIndex.jsx'
 import { store } from './store/store.js'
 import { ToyDetails } from './pages/ToyDetails.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
+import { Dashboard } from './pages/Dashboard.jsx'
 // import { CarEdit } from './pages/CarEdit.jsx'
 
 // import { UserDetails } from './pages/UserDetails.jsx'
 
 
 export default function App() {
-
     return (
         <Provider store={store}>
             <Router>
@@ -34,6 +35,7 @@ export default function App() {
                             <Route element={<AboutUs />} path="/about" />
                             <Route element={<ToyIndex />} path="/toy" />
                             <Route element={<ToyEdit />} path="/toy/edit/:toyId?" />
+                            <Route path="/dashboard" element={<Dashboard />} />
 
                             {/* <Route  element={<ToyEdit />} path="/toy/edit/:toyId"/> */}
                             {/* <Route element={<ToyEdit />}  path="/toy/edit"/> */}

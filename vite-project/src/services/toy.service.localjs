@@ -1,3 +1,5 @@
+
+
 import { utilService } from './util.service.js'
 // import { httpService } from './http.service.js'
 import { storageService } from './async-storage.service.js'
@@ -143,3 +145,119 @@ function _getRandomLabels(count) {
     const shuffled = labels.sort(() => 0.5 - Math.random())
     return shuffled.slice(0, count)
 }
+
+
+
+// import { utilService } from './util.service.js'
+// import { httpService } from './http.service.js'
+
+// const BASE_URL = 'toy/'
+// const labels = [
+//     'On wheels',
+//     'Box game',
+//     'Art',
+//     'Baby',
+//     'Doll',
+//     'Puzzle',
+//     'Outdoor',
+//     'Battery Powered',
+// ]
+
+
+// export const toyService = {
+//     query,
+//     get,
+//     save,
+//     remove,
+//     getEmptyToy,
+//     getDefaultFilter,
+//     getDefaultSort,
+//     getFilterFromSearchParams,
+//     getSortFromSearchParams,
+//     getToyLabels,
+// }
+
+
+// function query(filterBy = {}, sortBy = {}) {
+//     const filterAndSort = { ...filterBy, sortBy: sortBy.field, sortDir: sortBy.dir === 1 ? 'asc' : 'desc' };
+//     return httpService.get(BASE_URL, filterAndSort);
+// }
+
+// function get(toyId) {
+//     return httpService.get(BASE_URL + toyId)
+
+// }
+// function remove(toyId) {
+//     return httpService.delete(BASE_URL + toyId)
+// }
+
+// function save(toy) {
+//     if (toy._id) {
+//         return httpService.put(BASE_URL, toy)
+//     } else {
+//         return httpService.post(BASE_URL, toy)
+//     }
+// }
+
+
+// function getEmptyToy() {
+//     return {
+//         name: '',
+//         price: '',
+//         inStock: true,
+//         labels: _getRandomLabels(),
+//         createdAt: Date.now() - utilService.getRandomIntInclusive(0, 10000000),
+//     }
+// }
+
+
+// function getDefaultFilter() {
+//     return { name: '', price: '' }
+// }
+
+// function getDefaultSort() {
+//     return { field: 'name', dir: 1 }
+// }
+
+
+// function getFilterFromSearchParams(searchParams) {
+//     const defaultFilter = getDefaultFilter()
+//     const filterBy = {}
+//     for (const field in defaultFilter) {
+//         if (field === 'pageIdx') {
+//             filterBy[field] = parseInt(searchParams.get(field))
+//             if (isNaN(filterBy[field])) filterBy[field] = undefined
+//         } else {
+//             filterBy[field] = searchParams.get(field) || ''
+//         }
+//     }
+//     return filterBy
+// }
+
+// function getSortFromSearchParams(searchParams) {
+//     const defaultSort = getDefaultSort()
+//     const sortBy = {}
+//     for (const field in defaultSort) {
+//         if (searchParams.get(field) !== null) {
+//             sortBy[field] = searchParams.get(field)
+//         } else {
+//             sortBy[field] = defaultSort[field]
+//         }
+//     }
+//     return sortBy
+// }
+
+
+// function getToyLabels() {
+//     return [...labels]
+// }
+
+// function _getRandomLabels() {
+//     const labelsCopy = [...labels]
+//     const randomLabels = []
+//     for (let i = 0; i < 2; i++) {
+//         const randomIdx = Math.floor(Math.random() * labelsCopy.length)
+//         randomLabels.push(labelsCopy.splice(randomIdx, 1)[0])
+//     }
+//     return randomLabels
+// }

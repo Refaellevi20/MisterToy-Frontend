@@ -12,25 +12,6 @@ import { NavLink } from 'react-router-dom'
 
 export function AppHeader() {
     const dispatch = useDispatch()
-    // const user = useSelector(storeState => storeState.userModule.loggedInUser)
-    // console.log('user:', user)
-
-    // function onLogout() {
-    //     logout()
-    //         .then(() => {
-    //             showSuccessMsg('logout successfully')
-    //         })
-    //         .catch((err) => {
-    //             showErrorMsg('OOPs try again')
-    //         })
-    // }
-
-
-
-    // function onToggleCart(ev) {
-    //     ev.preventDefault()
-    //     dispatch({ type: TOGGLE_CART_IS_SHOWN })
-    // }
 
     return (
 
@@ -42,6 +23,7 @@ export function AppHeader() {
                     <NavLink to="/about" >About</NavLink>
                     <NavLink to="/toy" >Toys</NavLink>
                     {/* <a onClick={onToggleCart} href="#">🛒 Cart</a> */}
+                    <NavLink to="/dashboard" >Dashboard</NavLink>
 
                 </nav>
             </section>

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import { utilService } from '../services/util.service.js'
-import { toyService } from '../services/toy.service.local.js' 
+import { toyService } from '../services/toy.service.js' 
 
 export function ToyDetails() {
     const { toyId } = useParams()
@@ -12,7 +12,7 @@ export function ToyDetails() {
     const [isLoading, setIsLoading] = useState(true)
 
     const debouncedFetchToy = useRef(utilService.debounce((id) => {
-        toyService.get(id)
+        toyService.getById(id)
             .then(toyData => {
                 setToy(toyData)
                 setIsLoading(false)

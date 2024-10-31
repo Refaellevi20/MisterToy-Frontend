@@ -3,12 +3,13 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 // import { ToyFilter } from '../cmps/ToyFilter.jsx'
 
-import { toyService } from '../services/toy.service.local.js'
+import { toyService } from '../services/toy.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { loadToys, removeToy, saveToy, setFilterBy, setSortBy } from '../store/actions/toy.actions.js'
+import { loadToys, removeToy,saveToy, setFilterBy, setSortBy } from '../store/actions/toy.actions.js'
 import { ToyList } from '../cmps/ToyList.jsx'
 import { ToySort } from '../cmps/SortBy.jsx'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
+// import { ToyEdit } from './ToyEdit.jsx'
 // import { storageService } from '../services/async-storage.service.js'
 
 export function ToyIndex() {
@@ -61,29 +62,29 @@ export function ToyIndex() {
         }
     }
 
-    function onAddToy() {
-        const toyToSave = toyService.getRandomToy()
-        saveToy(toyToSave)
-            .then((savedToy) => {
-                showSuccessMsg(`toy added (id: ${savedToy._id})`)
-            })
-            .catch(err => {
-                showErrorMsg('Cannot add toy')
-            })
-    }
+    // function onAddToy() {
+    //     const toyToSave = toyService.getRandomToy()
+    //     saveToy(toyToSave)
+    //         .then((savedToy) => {
+    //             showSuccessMsg(`toy added (id: ${savedToy._id})`)
+    //         })
+    //         .catch(err => {
+    //             showErrorMsg('Cannot add toy')
+    //         })
+    // }
 
-    function onEditToy(toy) {
-        const price = +prompt('New price?')
-        const toyToSave = { ...toy, price }
+    // function onEditToy(toy) {
+    //     const price = +prompt('New price?')
+    //     const toyToSave = { ...toy, price }
 
-        saveToy(toyToSave)
-            .then((savedToy) => {
-                showSuccessMsg(`toy updated to price: $${savedToy.price}`)
-            })
-            .catch(err => {
-                showErrorMsg('Cannot update toy')
-            })
-    }
+    //     saveToy(toyToSave)
+    //         .then((savedToy) => {
+    //             showSuccessMsg(`toy updated to price: $${savedToy.price}`)
+    //         })
+    //         .catch(err => {
+    //             showErrorMsg('Cannot update toy')
+    //         })
+    // }
 
     if (!toys) return <div>loading...</div>
 
@@ -106,12 +107,13 @@ export function ToyIndex() {
                         // txt='abababa'
                         toys={toys}
                         onRemoveToy={onRemoveToy}
-                        onEditToy={onEditToy}
-                        onAddToy={onAddToy}
+                        // onEditToy={onEditToy}
+                        // onAddToy={onAddToy}
                     />
                     : <div>Loading...</div>
                 }
                 <hr />
+                {/* <ToyEdit /> */}
             </main>
         </div>
     )
