@@ -1,28 +1,30 @@
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
+import { useTranslation } from 'react-i18next';
 
 export function ToyPreview({ toy }) {
+    const { t } = useTranslation()
     return (
         <article>
-            <img src={`https://robohash.org/${toy._id}`} />
-
-            {/* <img src="" alt="" />            <h1>⛐</h1> */}
-            <p>Price: <span>${toy.price}</span></p>
-            <p>Name: <span>{toy.name}</span></p>
-            {toy.inStock ? (
-                <img className="stock-img" src="src/assets/img/1.png" alt="In Stock" />
-            ) : (
-                <img className="stock-img" src="src/assets/img/2.png" alt="Out of Stock" />
+            <p>{t('welcome')}</p>
+            <img src={`https://robohash.org/${toy._id}`} alt={toy.name} />
+            <p>{t('price')}: <span>${toy.price}</span></p>
+            {toy.discount > 0 && (
+                <div>
+                    <p>{t('discountedPrice')}: ${((1 - toy.discount) * toy.price).toFixed(2)}</p>
+                    <p>{t('discount')}: {toy.discount * 100}%</p>
+                </div>
             )}
-
+            <p>{t('name')}: <span>{toy.name}</span></p>
+            {/* <p>Name: <span>{toy.name}</span></p> */}
             <hr />
             <FaUser />
-            <Link to={`/toy/edit/${toy._id}`}>Edit</Link> &nbsp; | &nbsp;
-            <Link to={`/toy/${toy._id}`}>Details</Link>
-
+            <Link to={`/toy/edit/${toy._id}`}>{t('edit')}</Link> &nbsp; | &nbsp;
+            <Link to={`/toy/${toy._id}`}>{t('details')}</Link>
         </article>
     )
 }
+
 
 //! api
 //! if i am on the right way so far

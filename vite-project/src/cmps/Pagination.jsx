@@ -1,6 +1,6 @@
 import { Button, Box } from '@mui/material';
 
-export function PaginationButtons({ pageIdx, setPageIdx, toysLength }) {
+export function PaginationButtons({toys, pageIdx, setPageIdx, toysLength }) {
     return (
         <Box display="flex" alignItems="center" justifyContent="center" className="pagination">
         <Button 
@@ -15,7 +15,7 @@ export function PaginationButtons({ pageIdx, setPageIdx, toysLength }) {
         <Button 
             variant="contained" 
             onClick={() => setPageIdx(pageIdx + 1)} 
-            disabled={toysLength < 3}
+            disabled={toysLength < 5}
             style={{ marginLeft: '8px' }} 
         >
             Next

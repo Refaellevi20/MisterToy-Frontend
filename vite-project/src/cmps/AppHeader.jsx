@@ -1,3 +1,5 @@
+import React from 'react';
+import { LanguageSwitcher } from './LanguageSwitcher.jsx'; 
 // import { UserMsg } from './UserMsg.jsx'
 // import { LoginSignup } from './LoginSignup.jsx'
 // import { userService } from '../services/user.service.js'
@@ -12,6 +14,7 @@ import { NavLink } from 'react-router-dom'
 
 export function AppHeader() {
     const dispatch = useDispatch()
+    // const [menuOpen, setMenuOpen] = useState(false)
 
     return (
 
@@ -24,7 +27,7 @@ export function AppHeader() {
                     <NavLink to="/toy" >Toys</NavLink>
                     {/* <a onClick={onToggleCart} href="#">🛒 Cart</a> */}
                     <NavLink to="/dashboard" >Dashboard</NavLink>
-
+                    <LanguageSwitcher />
                 </nav>
             </section>
            

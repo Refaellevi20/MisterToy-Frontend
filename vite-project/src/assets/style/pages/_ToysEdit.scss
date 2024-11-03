@@ -1,0 +1,12 @@
+.toy-edit {
+    background-color: aquamarine;
+
+    & button {
+        background-color: rgb(68, 210, 253);
+    }
+
+    & a {
+        background-color: rgb(68, 210, 253);
+        padding: (5px)
+    }
+}

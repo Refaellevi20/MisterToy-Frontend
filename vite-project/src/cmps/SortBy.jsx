@@ -1,10 +1,11 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react'
 import { Select, MenuItem, Button, FormControl, InputLabel } from '@mui/material'
 // import Button from '@mui/material/Button';
 
 export function ToySort({ onSetSortBy }) {
-
+    const { t } = useTranslation()
     const [sortDirection, setSortDirection] = useState(1)
     const [sortByToEdit, setSortByToEdit] = useState({ field: 'name', dir: sortDirection })
     const [inStockClass, setInStockClass] = useState('btn-in-stock')
@@ -33,30 +34,31 @@ export function ToySort({ onSetSortBy }) {
 
     return (
         <section className="sort-container">
-        <h2>Sort</h2>
-        <FormControl variant="outlined" className="sort-select">
-            <InputLabel id="sort-select-label">Sort by</InputLabel>
-            <Select
-                labelId="sort-select-label"
-                id="sort-select"
-                value={sortByToEdit.field}
-                onChange={handleSortChange}
-                label="Sort by"
+            <h2>{t('sort')}</h2> 
+            <FormControl variant="outlined" className="sort-select">
+                <InputLabel id="sort-select-label">{t('sortBy')}</InputLabel> 
+                <Select
+                    labelId="sort-select-label"
+                    id="sort-select"
+                    value={sortByToEdit.field}
+                    onChange={handleSortChange}
+                    label={t('sortBy')}
+                >
+                    <MenuItem value="name">{t('name')}</MenuItem> 
+                    <MenuItem value="price">{t('price')}</MenuItem>
+                    <MenuItem value="createdAt">{t('created')}</MenuItem>
+                    <MenuItem value="inStock">{t('inStock')}</MenuItem>
+                    <MenuItem value="discount">{t('discount')}</MenuItem>
+                </Select>
+            </FormControl>
+            <Button
+                onClick={toggleSortDirection}
+                variant="outlined"
+                color="inherit"
+                style={{ marginLeft: '10px' }}
             >
-                <MenuItem value="name">Name</MenuItem>
-                <MenuItem value="price">Price</MenuItem>
-                <MenuItem value="createdAt">Created</MenuItem>
-                <MenuItem value="inStock">In Stock</MenuItem>
-            </Select>
-        </FormControl>
-        <Button
-            onClick={toggleSortDirection}
-            variant="outlined"
-            color="inherit"
-            style={{ marginLeft: '10px' }}
-        >
-            Sort Direction ({sortByToEdit.dir === 1 ? 'Asc' : 'Desc'})
-        </Button>
-    </section>
+                {t('sortDirection')}: {sortByToEdit.dir === 1 ? t('sortDirectionAsc') : t('sortDirectionDesc')} 
+            </Button>
+        </section>
     )
 }

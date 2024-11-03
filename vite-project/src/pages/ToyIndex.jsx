@@ -85,7 +85,7 @@ export function ToyIndex({ pageIdx, setPageIdx, toysLength }) {
                 showSuccessMsg(`toy updated to price: $${savedToy.price}`)
             })
             .catch(err => {
-                showErrorMsg('Cannot update toy')
+                showErrorMsg('Cannot update toy' + err)
             })
     }
 
@@ -123,7 +123,6 @@ export function ToyIndex({ pageIdx, setPageIdx, toysLength }) {
                 </section> */}
                 {!isLoading
                     ? <ToyList
-                        // txt='abababa'
                         toys={toys}
                         onRemoveToy={onRemoveToy}
                         onEditToy={onEditToy}

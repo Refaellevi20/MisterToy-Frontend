@@ -1,0 +1,32 @@
+/* Setup */
+@import 'setup/vars';
+@import 'setup/typography';
+@import 'setup/Mixins';
+
+/* Base */
+@import "base/base";
+@import 'base/Froms';
+@import 'base/helpers';
+@import 'base/layout';
+
+/* Cmps */
+@import 'cmps/ToyPreview';
+@import 'cmps/ToySort';
+@import 'cmps/ToyFilter';
+@import 'cmps/AppFooter';
+@import 'cmps/ToggleBtn';
+@import 'cmps/Shopping';
+@import 'cmps/UserMsg';
+@import "cmps/ToysList";
+@import "cmps/AppHeader";
+
+/* Pages */
+// @import "pages/ToysIndex";
+@import "pages/About";
+@import "pages/ToysDetails"; 
+@import "pages/ToysEdit";
+
+/* Mq*/
+@import "mq/mq"
+
+

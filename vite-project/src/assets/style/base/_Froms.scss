@@ -1,0 +1,20 @@
+button {
+    cursor: pointer;
+    background-color: var($clr2bg);
+    margin: 0.5em;
+    border: 0;
+    padding: 0.5em 0.8em;
+    border-radius: 4px;
+
+
+    &:hover {
+        background-color: var($clr2);
+        color: rgb(119, 207, 248);
+        transition: .3s;
+    }
+}
+
+input:focus {
+    background-color: var($clr1bg);
+    transition: background-color 1s;
+}

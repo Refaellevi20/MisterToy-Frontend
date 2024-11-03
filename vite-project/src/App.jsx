@@ -2,7 +2,8 @@
 // // const Router = ReactRouterDOM.HashRouter
 // const { Route, Routes } = ReactRouterDOM
 // const { Provider } = ReactRedux
-import './assets/style/main.css'
+// import './assets/style/main.css'
+import './assets/style/main.scss'
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Provider } from 'react-redux'

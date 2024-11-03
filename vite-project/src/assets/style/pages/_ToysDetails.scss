@@ -1,0 +1,88 @@
+.details-container {
+    padding: 1.5em;
+    background-color: $clr1bg; 
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    // .details-toy {
+    //     display: flex;
+    //     align-items: center; 
+    //     gap: 1em; 
+    //             text-align: center; 
+
+
+        .toy-image {
+            width: 100px; 
+            height: auto; 
+            // flex-shrink: 0; 
+        }
+
+    //     .toy-info {
+    //         display: flex; 
+    //         flex-direction: column; 
+    //     }
+    // }
+
+    // .labels-title {
+    //     text-align: center; 
+    //     margin: 1em 0; 
+    // }
+
+    .toy-title {
+        font-size: 2em;
+        margin: 0.5em 0;
+    }
+
+    .toy-name,
+    .toy-price {
+        font-size: 1.2em;
+        margin: 0.5em 0;
+    }
+
+    .labels-title {
+        font-size: 1.5em;
+        margin: 1em 0;
+    }
+
+    .label {
+        font-size: 1.1em;
+        color: $gray2; 
+    }
+
+    .stock-status {
+        font-weight: bold;
+
+        &.in-stock {
+            color: green;
+        }
+
+        &.out-of-stock {
+            color: red;
+        }
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 1em;
+        color: $clr2; 
+        text-decoration: underline;
+
+        &:hover {
+            color: darken($clr2, 10%); 
+        }
+    }
+}
+
+@media (min-width: 600px) {
+    .details-container {
+        // max-width: 600px;
+        // margin: 0 auto;
+    }
+}
+
+@media (min-width: 900px) {
+    .details-container {
+        // max-width: 800px;
+        // padding: 2em;
+    }
+}

@@ -1,0 +1,29 @@
+.toy-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  gap: 0.6em;
+  margin: 0.6em 0;
+
+  & li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: var($clr1bg); 
+    padding: 0.65em;
+
+    &:hover {
+      background-color: var(--clr1bg-light); 
+    }
+  }
+}
+
+ul.toy-list {
+  margin: 0;
+  padding: 0; 
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: center; 
+  align-items: center; 
+}

@@ -1,0 +1,129 @@
+.app-header {
+    background-color: $app-header-bg;
+    color: white;
+    height: $header-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: slideIn 0.5s ease forwards; 
+
+    .header-container {
+        max-width: 1200px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+
+        h1 {
+            margin: 0;
+            font-size: 1.5em;
+            transition: transform 0.4s; 
+            &:hover {
+                transform: scale(1.2); 
+            }
+        }
+
+        .app-nav {
+            display: flex;
+            gap: 20px;
+
+            a {
+                color: white;
+                text-decoration: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                transition: background-color 0.3s, color 0.3s;
+// בהיר
+                &:hover {
+                    background-color: lighten($app-header-bg, 10%);
+                    color: darken(white, 20%);
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+// .menu-button {
+//     margin: 10px 0; 
+//     background-color: transparent;
+//     color: white;
+//     border: 1px solid white;
+//     border-radius: 5px;
+//     padding: 5px 10px;
+//     cursor: pointer;
+//     transition: background-color 0.3s;
+
+//     &:hover {
+//         background-color: lighten($app-header-bg, 10%);
+//     }
+// }
+
+// .app-nav {
+//     display: none;
+
+//     &.open {
+//         display: flex; 
+//         flex-direction: column;
+//         gap: 10px; 
+//         width: 100%; 
+
+//         a {
+//             text-align: center;
+//             padding: 15px;
+//             width: 100%;
+//             color: white;
+//             text-decoration: none;
+//         }
+//     }
+// }
+
+
+
+@include respond-to(mobile) {
+    .app-header {
+        height: auto; 
+        flex-direction: column; 
+        align-items: start; 
+       
+
+        .header-container {
+            flex-direction: column; 
+            align-items: center; 
+
+            h1 {
+                font-size: 1.2em; 
+                margin-bottom: 10px; 
+            }
+
+            
+            .app-nav {
+                flex-direction: column; 
+                gap: 10px; 
+                width: 100%; 
+            
+               
+
+                a {
+                    width: 100%; 
+                    text-align: center;
+                    padding: 15px; 
+
+                  
+                }
+            }
+        }
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        //& not nesesry the opacity becouse i can not see him anyway
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

@@ -54,14 +54,14 @@ export function ToyEdit() {
       .catch(err => {
         showErrorMsg('Cannot save toy')
       })
-    //   .finally (() =>   navigate('/toy'))
+      .finally (() =>   navigate('/toy'))
   }
 
   const { name, price, labels: toyLabels } = toyToEdit
   const labels = toyService.getToyLabels()
 
   return (
-    <section className="toy-edit">
+    <section className="toy-edit card">
       <h2>{toyToEdit._id ? 'Edit' : 'Add'} Toy</h2>
 
       <form onSubmit={onSaveToy}>

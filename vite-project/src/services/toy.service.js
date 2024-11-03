@@ -89,7 +89,7 @@ function save(toy) {
 
 
 function getDefaultFilter() {
-    return { name: '', price: '', pageIdx: 0 }
+    return { name: '', price: '', pageIdx: 0, labels: [] }
 }
 
 function getDefaultSort() {
